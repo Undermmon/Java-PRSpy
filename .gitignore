@@ -1,0 +1,6 @@
+target/
+dependency-reduced-pom.xml
+/.vscode
+/.VSCodeCounter
+*.session.sql
+*.code-workspace
