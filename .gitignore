@@ -4,3 +4,4 @@ dependency-reduced-pom.xml
 /.VSCodeCounter
 *.session.sql
 *.code-workspace
+ServerInfo.json
