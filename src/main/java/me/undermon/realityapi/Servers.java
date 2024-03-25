@@ -6,10 +6,8 @@
 
 package me.undermon.realityapi;
 
-import com.google.gson.Gson;
-
 public interface Servers extends Iterable<Server> {
 	public static Servers from(String json) {
-		return new Gson().fromJson(json, ServerInfo.class);
+		return ServerInfo.GSON.fromJson(json, ServerInfo.class);
 	}
 }

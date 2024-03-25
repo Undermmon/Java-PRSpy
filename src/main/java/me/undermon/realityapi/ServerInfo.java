@@ -8,7 +8,10 @@ package me.undermon.realityapi;
 
 import java.util.Iterator;
 
+import com.google.gson.Gson;
+
 record ServerInfo(ServerInfoServer[] servers) implements Servers {
+	static final Gson GSON = new Gson();
 
 	@Override
 	public Iterator<Server> iterator() {
