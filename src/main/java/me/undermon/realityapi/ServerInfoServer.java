@@ -110,7 +110,7 @@ record ServerInfoServer (
 
 	@Override
 	public Map map() {
-		throw new UnsupportedOperationException("Unimplemented method 'map'");
+		return Map.fromGamemode(this.properties.mapname());
 	}
 
 	@Override
@@ -155,5 +155,10 @@ record ServerInfoServer (
 		} catch (MalformedURLException e) {
 			return Optional.empty();
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Server[name=%s]".formatted(this.name()); // TODO implement on toString on ServerInfoServer
 	}
 }
