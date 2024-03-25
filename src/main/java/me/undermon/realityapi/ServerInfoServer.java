@@ -6,10 +6,154 @@
 
 package me.undermon.realityapi;
 
-record ServerInfoServer(
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.Optional;
+
+import com.neovisionaries.i18n.CountryCode;
+
+record ServerInfoServer (
 	String serverId,
 	boolean hasMumble,
 	String countryFlag,
 	ServerInfoProperties properties,
 	ServerInfoPlayer[] players
-) {}
+) implements Server {
+
+	private class PlayerIterator implements Iterator<Player> {
+		private int cursor = -1;
+
+		@Override
+		public boolean hasNext() {
+			return players.length - 1 > cursor;
+		}
+
+		@Override
+		public Player next() {
+			cursor += 1;
+
+			return players[cursor];
+		}
+	}
+
+	@Override
+	public Iterator<Player> iterator() {
+		return new PlayerIterator();
+	}
+
+	@Override
+	public String identifier() {
+		return this.serverId;
+	}
+
+	@Override
+	public String name() {
+		return this.properties.hostname();
+	}
+
+	@Override
+	public String message() {
+		return this.properties.bf2_sponsortext();
+	}
+
+	@Override
+	public Platform platform() {
+		return Platform.fromString(this.properties.bf2_os());
+	}
+
+	@Override
+	public CountryCode country() {
+		CountryCode code;
+	
+		try {
+			code = CountryCode.valueOf(this.countryFlag);
+		} catch (IllegalArgumentException e) {
+			code = CountryCode.UNDEFINED;
+		}
+		
+		return code;
+	}
+
+	@Override
+	public String version() {
+		return this.properties.gamever();
+	}
+
+	@Override
+	public boolean hasPassword() {
+		return this.properties.password() > 0;
+	}
+
+	@Override
+	public int reservedSlots() {
+		return this.properties.bf2_reservedslots();
+	}
+
+	@Override
+	public Optional<URL> logo() {
+		try {
+			return Optional.of(new URL(this.properties.bf2_sponsorlogo_url()));
+		} catch (MalformedURLException e) {
+			return Optional.empty();
+		}
+	}
+
+	@Override
+	public Optional<URL> community() {
+		try {
+			return Optional.of(new URL(this.properties.bf2_communitylogo_url()));
+		} catch (MalformedURLException e) {
+			return Optional.empty();
+		}
+	}
+
+	@Override
+	public Map map() {
+		throw new UnsupportedOperationException("Unimplemented method 'map'");
+	}
+
+	@Override
+	public me.undermon.realityapi.Mode mode() {
+		return Mode.fromGamemode(this.properties.gametype());
+	}
+
+	@Override
+	public Layer layer() {
+		return Layer.fromMapSize(this.properties.bf2_mapsize());
+	}
+
+	@Override
+	public int compareTo(Server other) {
+		return this.name().compareToIgnoreCase(other.name());
+	}
+
+	@Override
+	public Faction factionOne() {
+		return Faction.fromCode(this.properties.bf2_team1());
+	}
+
+	@Override
+	public Faction factionTwo() {
+		return Faction.fromCode(this.properties.bf2_team2());
+	}
+
+	@Override
+	public int connected() {
+		return this.properties.numplayers();
+	}
+
+	@Override
+	public int capacity() {
+		return this.properties.maxplayers();
+	}
+
+	@Override
+	public Optional<URL> resources() {
+		try {
+			return Optional.of(new URL(this.properties.bf2_d_dl()));
+		} catch (MalformedURLException e) {
+			return Optional.empty();
+		}
+	}
+}

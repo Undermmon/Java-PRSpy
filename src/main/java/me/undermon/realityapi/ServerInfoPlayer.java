@@ -6,4 +6,52 @@
 
 package me.undermon.realityapi;
 
-record ServerInfoPlayer(String name, int score, int kills, int deaths, int team, int ping, int isAI) {}
+import java.util.Optional;
+
+record ServerInfoPlayer(
+	String name, int score, int kills, int deaths, int team, int ping, int isAI) implements Player {
+
+	@Override
+	public int compareTo(Player other) {
+		return this.name().compareToIgnoreCase(other.name());
+	}
+
+	@Override
+	public String toString() {
+		return "%s[%s, kills=%s, deaths=%s, KD=%s, ping=%s]".formatted( 
+			(this.isBot()) ? "Bot" : "Player",
+			this.tag().map(tag -> tag + " ").orElse("") + this.name(),
+			this.kills,
+			this.deaths,
+			this.kd(),
+			this.ping
+		);
+	}
+
+	@Override
+	public Optional<String> tag() {
+		String tag = this.name.split(" ")[0];
+
+		return tag.isEmpty() ? Optional.empty() : Optional.of(tag);  
+	}
+
+	@Override
+	public String name() {
+		return this.name.split(" ")[1];
+	}
+
+	@Override
+	public double kd() {
+		return (this.deaths != 0) ? (double) this.kills / this.deaths : this.kills;
+	}
+
+	@Override
+	public boolean inFactionOne() {
+		return this.team == 1;
+	}
+
+	@Override
+	public boolean isBot() {
+		return this.isAI != 0;
+	}
+}

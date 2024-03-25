@@ -6,4 +6,28 @@
 
 package me.undermon.realityapi;
 
-record ServerInfo(ServerInfoServer[] servers) {}
+import java.util.Iterator;
+
+record ServerInfo(ServerInfoServer[] servers) implements Servers {
+
+	@Override
+	public Iterator<Server> iterator() {
+		return new ServerIterator();
+	}
+
+	private class ServerIterator implements Iterator<Server> {
+		private int cursor = -1;
+
+		@Override
+		public boolean hasNext() {
+			return servers.length - 1 > cursor;
+		}
+
+		@Override
+		public Server next() {
+			cursor += 1;
+			
+			return servers[cursor];
+		}
+	}
+}

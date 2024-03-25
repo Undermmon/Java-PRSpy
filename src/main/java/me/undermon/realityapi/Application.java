@@ -14,39 +14,21 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.google.gson.Gson;
-
-
 public class Application {
-	private static final Gson GSON = new Gson();
-
-	/**
-	* InnerJPrSpy
-	*/
-	private record Test(String name, int age, int height) {
-		
-	}
-
-
 	public static void main(String[] args) throws Exception {		
 		String data = Files.readString(Paths.get("ServerInfo.json"));
+		// String data = retrieveServerInfo();
+
+		Servers servers = Servers.from(data);
 		
-		// System.out.println(data);
-		Application.name(data);
-	}
-	
-	public static void name(String json) {
-		ServerInfo serverInfo = GSON.fromJson(json, ServerInfo.class);
+		for (Server server : servers) {
+			System.out.println(server.country() + " " + server.connected() + "/" + server.capacity() + " " + server.name());
 
-
-		for (ServerInfoServer server : serverInfo.servers()) {
-			for (ServerInfoPlayer player : server.players()) {
-				System.out.println(player);
-			}
+			// System.out.println(server.name() + " -> " + server.community());
 		}
 	}
 	
-	public static void prspy() throws Exception {
+	public static String retrieveServerInfo() throws Exception {
 		HttpClient client = HttpClient.newHttpClient();
 		
 		URI uri = new URI("https://servers.realitymod.com/api/ServerInfo");
@@ -54,6 +36,6 @@ public class Application {
 		
 		HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 		
-		System.out.println(response.body());
+		return response.body();
 	}
 }

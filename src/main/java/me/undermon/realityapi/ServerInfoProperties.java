@@ -15,7 +15,7 @@ record ServerInfoProperties(
 	String gamevariant,
 	int numplayers,
 	int maxplayers,
-	String password,
+	int password,
 	int timelimit,
 	String roundtime,
 	String bf2_os,
@@ -25,7 +25,7 @@ record ServerInfoProperties(
 	String bf2_communitylogo_url,
 	String bf2_team1,
 	String bf2_team2,
-	String bf2_mapsize,
+	int bf2_mapsize,
 	int bf2_reservedslots
 ) {
 
