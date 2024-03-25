@@ -159,6 +159,19 @@ record ServerInfoServer (
 
 	@Override
 	public String toString() {
-		return "Server[name=%s]".formatted(this.name()); // TODO implement on toString on ServerInfoServer
+		return "Server[name=%s, id=%s, platform=%s, country=%s, mumble=%b, password=%b, players=%d/%d(%d), map=%s(%s, %s)]".
+		formatted(
+			this.name(),
+			this.identifier(),
+			this.platform(),
+			this.country(),
+			this.hasMumble(),
+			this.hasPassword(),
+			this.connected(),
+			this.capacity(),
+			this.reservedSlots(),
+			this.map(),
+			this.mode(),
+			this.layer());
 	}
 }

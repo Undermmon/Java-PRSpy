@@ -14,6 +14,11 @@ record ServerInfo(ServerInfoServer[] servers) implements Servers {
 	static final Gson GSON = new Gson();
 
 	@Override
+	public String toString() {
+		return "Servers[count=%d]".formatted(servers.length);
+	}
+
+	@Override
 	public Iterator<Server> iterator() {
 		return new ServerIterator();
 	}

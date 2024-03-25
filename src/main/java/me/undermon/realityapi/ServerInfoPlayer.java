@@ -18,13 +18,13 @@ record ServerInfoPlayer(
 
 	@Override
 	public String toString() {
-		return "%s[%s, kills=%s, deaths=%s, KD=%s, ping=%s]".formatted( 
-			(this.isBot()) ? "Bot" : "Player",
+		return "Player[%s, kills=%d, deaths=%d, KD=%.2f, ping=%d, bot=%b]".formatted( 
 			this.tag().map(tag -> tag + " ").orElse("") + this.name(),
 			this.kills,
 			this.deaths,
 			this.kd(),
-			this.ping
+			this.ping,
+			this.isBot()
 		);
 	}
 
