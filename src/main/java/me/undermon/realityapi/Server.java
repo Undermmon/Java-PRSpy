@@ -8,6 +8,7 @@ package me.undermon.realityapi;
 
 import java.net.URL;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import com.neovisionaries.i18n.CountryCode;
 
@@ -50,5 +51,7 @@ public interface Server extends Iterable<Player>, Comparable<Server> {
 	public Faction factionOne();
 
 	public Faction factionTwo();
+
+	public Stream<Player> stream();
 
 }

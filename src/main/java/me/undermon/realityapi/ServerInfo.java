@@ -7,6 +7,8 @@
 package me.undermon.realityapi;
 
 import java.util.Iterator;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import com.google.gson.Gson;
 
@@ -37,5 +39,10 @@ record ServerInfo(ServerInfoServer[] servers) implements Servers {
 			
 			return servers[cursor];
 		}
+	}
+
+	@Override
+	public Stream<Server> stream() {
+		return StreamSupport.stream(this.spliterator(), false);
 	}
 }

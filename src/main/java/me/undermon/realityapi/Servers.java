@@ -6,7 +6,12 @@
 
 package me.undermon.realityapi;
 
+import java.util.stream.Stream;
+
 public interface Servers extends Iterable<Server> {
+	
+	public Stream<Server> stream();
+
 	public static Servers from(String json) {
 		return ServerInfo.GSON.fromJson(json, ServerInfo.class);
 	}

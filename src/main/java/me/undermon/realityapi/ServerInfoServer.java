@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Optional;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import com.neovisionaries.i18n.CountryCode;
 
@@ -173,5 +175,10 @@ record ServerInfoServer (
 			this.map(),
 			this.mode(),
 			this.layer());
+	}
+
+	@Override
+	public Stream<Player> stream() {
+		return StreamSupport.stream(this.spliterator(), false);
 	}
 }
