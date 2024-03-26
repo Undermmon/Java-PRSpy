@@ -112,7 +112,7 @@ record ServerInfoServer (
 
 	@Override
 	public Map map() {
-		return Map.fromGamemode(this.properties.mapname());
+		return Map.fromName(this.properties.mapname());
 	}
 
 	@Override

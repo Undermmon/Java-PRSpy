@@ -92,7 +92,7 @@ public enum Map {
 		return name;
 	}
 
-	static Map fromGamemode(String name) {
+	static Map fromName(String name) {
 
 		for (Map map : Map.values()) {
 			if (map.getName().equals(name)) {
