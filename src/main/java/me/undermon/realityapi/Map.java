@@ -82,24 +82,32 @@ public enum Map {
 	YAMALIA("Yamalia"),
 	ZAKHO("Zakho - BETA");
 
-	private String name;
+	private String fullName;
 
-	Map(String name) {
-		this.name = name;
+	Map(String fullName) {
+		this.fullName = fullName;
 	}
 
-	public String getName() {
-		return name;
+	public String getFullName() {
+		return fullName;
 	}
 
-	static Map fromName(String name) {
+	public static Map fromFullName(String name) {
 
 		for (Map map : Map.values()) {
-			if (map.getName().equals(name)) {
+			if (map.getFullName().equals(name)) {
 				return map;
 			}
 		}
 
 		return Map.UNKNOWN;
+	}
+
+	public static Map fromString(String string) {
+		try {
+			return Map.valueOf(string.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			return Map.UNKNOWN;
+		}
 	}
 }

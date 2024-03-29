@@ -7,34 +7,49 @@
 package me.undermon.realityapi;
 
 public enum Mode {
-	UNKNOWN("unknown", "Unknown"),
-	AAS("gpm_cq", "Assault and Secure"),
-	INSURGENCY("gpm_insurgency", "Insurgency"),
-	SKIRMISH("gpm_skirmish", "Skirmish"),
-	CNC("gpm_cnc", "Command & Control"),
-	VEHICLE_WARFARE("gpm_vehicles", "Vehicle Warfare"),
-	COOP("gpm_coop", "Co-Operative"),
-	TRAINING("gpm_training", "Training"),
-	COUNTER("gpm_counter", "Counter-Attack"),
-	GUNGAME("gpm_gungame", "Gungame"),
-	SCENARIO("gpm_scenario", "Scenario");
+	UNKNOWN("unknown", "Unknown", "?"),
+	AAS("gpm_cq", "Assault and Secure", "AAS"),
+	INSURGENCY("gpm_insurgency", "Insurgency", "Ins"),
+	SKIRMISH("gpm_skirmish", "Skirmish", "Sk"),
+	CNC("gpm_cnc", "Command & Control", "C&C"),
+	VEHICLE_WARFARE("gpm_vehicles", "Vehicle Warfare", "VW"),
+	COOP("gpm_coop", "Co-Operative", "Coop"),
+	TRAINING("gpm_training", "Training", "Tr"),
+	COUNTER("gpm_counter", "Counter-Attack", "CT"),
+	GUNGAME("gpm_gungame", "Gungame", "Gun"),
+	SCENARIO("gpm_scenario", "Scenario", "Sc");
 
 	private String code;
-	private String name;
+	private String longName;
+	private String shortName;
 
-	Mode(String code, String name) {
+	
+	Mode(String code, String longName, String shortName) {
 		this.code = code;
-		this.name = name;
+		this.longName = longName;
+		this.shortName = shortName;
 	};
-
-	public String getName() {
-		return name;
+	
+	public String getLongName() {
+		return longName;
 	}
 
-	static Mode fromGamemode(String gamemode) {
+	public String getShortName() {
+		return shortName;
+	}
+
+	public static Mode fromString(String string) {
+		try {
+			return Mode.valueOf(string.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			return Mode.UNKNOWN;
+		}
+	}
+
+	static Mode fromIngameId(String id) {
 
 		for (Mode mode : Mode.values()) {
-			if (mode.code.equals(gamemode)) {
+			if (mode.code.equals(id)) {
 				return mode;
 			}	
 		}

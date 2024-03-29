@@ -7,11 +7,35 @@
 package me.undermon.realityapi;
 
 public enum Layer {
-	INFANTRY,
-	STANDARD,
-	ALTERNATIVE,
-	LARGE,
-	UNKNOWN;
+	INFANTRY("Infantry", "Inf"),
+	STANDARD("Standard", "Std"),
+	ALTERNATIVE("Alternative", "Alt"),
+	LARGE("Large", "Lrg"),
+	UNKNOWN("Unknown", "?");
+
+	private String longName;
+	private String shortName;
+
+	private Layer(String longName, String shortName) {
+		this.longName = longName;
+		this.shortName = shortName;
+	}
+
+	public String getLongName() {
+		return longName;
+	}
+
+	public String getShortName() {
+		return shortName;
+	}
+
+	public static Layer fromString(String string) {
+		try {
+			return Layer.valueOf(string.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			return Layer.UNKNOWN;
+		}
+	}
 
 	static Layer fromMapSize(int size) {
 		return switch (size) {

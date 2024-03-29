@@ -112,12 +112,12 @@ record ServerInfoServer (
 
 	@Override
 	public Map map() {
-		return Map.fromName(this.properties.mapname());
+		return Map.fromFullName(this.properties.mapname());
 	}
 
 	@Override
 	public me.undermon.realityapi.Mode mode() {
-		return Mode.fromGamemode(this.properties.gametype());
+		return Mode.fromIngameId(this.properties.gametype());
 	}
 
 	@Override
