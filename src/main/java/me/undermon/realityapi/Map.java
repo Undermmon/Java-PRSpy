@@ -62,7 +62,7 @@ public enum Map {
 	RAMIEL("Ramiel"),
 	RAS_EL_MASRI("Ras El Masri"),
 	REICHSWALD("Reichswald"),
-	ROAD_TO_DAMASCUS("Road to Damascus"),
+	ROAD_TO_DAMASCUS("Road to Damascus - BETA"),
 	ROUTE_E106("Route E-106"),
 	SAAREMAA("Saaremaa"),
 	SAHEL("Sahel"),
