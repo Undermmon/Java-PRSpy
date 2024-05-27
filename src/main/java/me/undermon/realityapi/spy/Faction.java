@@ -40,31 +40,31 @@ public enum Faction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Faction.class);
 	
-	private String code;
+	private String id;
 	private String name;
 
-	private Faction(String code, String name) {
-		this.code = code;
+	private Faction(String id, String name) {
+		this.id = id;
 		this.name = name;
 	}
 
-	public String getCode() {
-		return code;
+	public String getId() {
+		return id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	static Faction fromCode(String code) {
+	static Faction fromId(String id) {
 
 		for (Faction faction : Faction.values()) {
-			if (faction.code.equalsIgnoreCase(code)) {
+			if (faction.id.equalsIgnoreCase(id)) {
 				return faction;
 			}
 		}
 
-		LOGGER.warn("Unknown faction code: {}", code);
+		LOGGER.warn("Unknown faction id: {}", id);
 
 		return Faction.UNKNOWN;
 	}

@@ -132,12 +132,12 @@ record ServerInfoServer (
 
 	@Override
 	public Faction factionOne() {
-		return Faction.fromCode(this.properties.bf2_team1());
+		return Faction.fromId(this.properties.bf2_team1());
 	}
 
 	@Override
 	public Faction factionTwo() {
-		return Faction.fromCode(this.properties.bf2_team2());
+		return Faction.fromId(this.properties.bf2_team2());
 	}
 
 	@Override

@@ -29,8 +29,8 @@ public enum Mode {
 	private String shortName;
 
 	
-	Mode(String code, String longName, String shortName) {
-		this.code = code;
+	Mode(String id, String longName, String shortName) {
+		this.code = id;
 		this.longName = longName;
 		this.shortName = shortName;
 	}
