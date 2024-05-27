@@ -4,7 +4,10 @@
 * file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-package me.undermon.realityapi;
+package me.undermon.realityapi.prspy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public enum Layer {
 	INFANTRY("Infantry", "Inf"),
@@ -12,6 +15,8 @@ public enum Layer {
 	ALTERNATIVE("Alternative", "Alt"),
 	LARGE("Large", "Lrg"),
 	UNKNOWN("Unknown", "?");
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(Layer.class);
 
 	private String longName;
 	private String shortName;
@@ -33,12 +38,14 @@ public enum Layer {
 		try {
 			return Layer.valueOf(string.toUpperCase());
 		} catch (IllegalArgumentException e) {
+			LOGGER.warn("Unknown layer: {}", string);
+			
 			return Layer.UNKNOWN;
 		}
 	}
 
 	static Layer fromMapSize(int size) {
-		return switch (size) {
+		Layer layer = switch (size) {
 			case 16 -> Layer.INFANTRY;
 			case 32 -> Layer.ALTERNATIVE;
 			case 64 -> Layer.STANDARD;
@@ -46,5 +53,11 @@ public enum Layer {
 
 			default -> Layer.UNKNOWN;
 		};
+
+		if (layer.equals(Layer.UNKNOWN)) {
+			LOGGER.warn("Unknown layer size: {}", size);			
+		}
+
+		return layer;
 	}
 }

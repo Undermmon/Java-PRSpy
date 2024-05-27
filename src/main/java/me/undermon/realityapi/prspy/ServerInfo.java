@@ -4,7 +4,7 @@
 * file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-package me.undermon.realityapi;
+package me.undermon.realityapi.prspy;
 
 import java.util.Iterator;
 import java.util.stream.Stream;

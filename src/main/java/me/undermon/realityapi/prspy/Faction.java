@@ -4,7 +4,10 @@
 * file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-package me.undermon.realityapi;
+package me.undermon.realityapi.prspy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public enum Faction {
 	ARF("arf", "African Resistance Fighters"),
@@ -35,6 +38,8 @@ public enum Faction {
 	VIETCONG("vnvc", "Viet Cong"),
 	UNKNOWN("unknown", "Unknown");
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(Faction.class);
+	
 	private String code;
 	private String name;
 
@@ -58,6 +63,8 @@ public enum Faction {
 				return faction;
 			}
 		}
+
+		LOGGER.warn("Unknown faction code: {}", code);
 
 		return Faction.UNKNOWN;
 	}

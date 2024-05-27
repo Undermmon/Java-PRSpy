@@ -4,7 +4,10 @@
 * file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-package me.undermon.realityapi;
+package me.undermon.realityapi.prspy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public enum Map {
 	UNKNOWN("Unknown"),
@@ -82,6 +85,8 @@ public enum Map {
 	YAMALIA("Yamalia"),
 	ZAKHO("Zakho - BETA");
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(Map.class);
+
 	private String fullName;
 
 	Map(String fullName) {
@@ -100,6 +105,8 @@ public enum Map {
 			}
 		}
 
+		LOGGER.warn("Unknown map full name: {}", name);
+
 		return Map.UNKNOWN;
 	}
 
@@ -107,6 +114,9 @@ public enum Map {
 		try {
 			return Map.valueOf(string.toUpperCase());
 		} catch (IllegalArgumentException e) {
+
+			LOGGER.warn("Unknown map: {}", string);
+
 			return Map.UNKNOWN;
 		}
 	}

@@ -4,7 +4,7 @@
 * file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-package me.undermon.realityapi;
+package me.undermon.realityapi.prspy;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -116,7 +116,7 @@ record ServerInfoServer (
 	}
 
 	@Override
-	public me.undermon.realityapi.Mode mode() {
+	public me.undermon.realityapi.prspy.Mode mode() {
 		return Mode.fromIngameId(this.properties.gametype());
 	}
 

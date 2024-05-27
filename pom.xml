@@ -3,9 +3,9 @@
 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <modelVersion>4.0.0</modelVersion>
 
-<groupId>me.undermon</groupId>
-<artifactId>realityapi</artifactId>
-<version>24.3.30</version>
+<groupId>me.undermon.realityapi</groupId>
+<artifactId>prspy</artifactId>
+<version>24.5.27</version>
 
 <properties>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,6 +15,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 </properties>
 
 <dependencies>
+
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>2.0.13</version>
+	</dependency>
+
 	<dependency>
 		<groupId>org.junit.jupiter</groupId>
 		<artifactId>junit-jupiter-engine</artifactId>
