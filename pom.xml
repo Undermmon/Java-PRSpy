@@ -4,7 +4,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 <modelVersion>4.0.0</modelVersion>
 
 <groupId>me.undermon.realityapi</groupId>
-<artifactId>prspy</artifactId>
+<artifactId>spy</artifactId>
 <version>24.5.27</version>
 
 <properties>
