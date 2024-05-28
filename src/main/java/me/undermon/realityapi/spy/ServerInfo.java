@@ -7,6 +7,7 @@
 package me.undermon.realityapi.spy;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -35,6 +36,10 @@ record ServerInfo(ServerInfoServer[] servers) implements Servers {
 
 		@Override
 		public Server next() {
+			if (!this.hasNext()) {
+				throw new NoSuchElementException();
+			}
+			
 			cursor += 1;
 			
 			return servers[cursor];
