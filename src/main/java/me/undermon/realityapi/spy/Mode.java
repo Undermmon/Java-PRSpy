@@ -48,7 +48,7 @@ public enum Mode {
 			return Mode.valueOf(string.toUpperCase());
 		} catch (IllegalArgumentException e) {
 
-			LOGGER.warn("Unknown map: {}", string);
+			LOGGER.warn("Unknown mode: {}", string);
 
 			return Mode.UNKNOWN;
 		}
@@ -62,7 +62,7 @@ public enum Mode {
 			}	
 		}
 
-		LOGGER.warn("Unknown map id: {}", id);
+		LOGGER.warn("Unknown mode id: {}", id);
 
 		return Mode.UNKNOWN;
 	}
